@@ -1,0 +1,44 @@
+#selector{
+    border: solid;
+    border-width: 1px;
+    border-color: #bdbdbd;
+    width: 17%;
+}
+
+.modal-dialog{
+    top: 15%;
+    width: 30%;
+    height: 70%;
+}
+.modal-body{
+    width: 90%;
+    left: 5%;
+}
+#enter-hello{
+    /*margin-top: 12%;
+    opacity: 0.5;*/
+}
+body{
+    background-image: url('../resource/hello-page.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+#jumbotron-hello > div{
+    background-color: transparent;
+    color: wheat;
+}
+#jumbotron-auth > div {
+    background-color: transparent;
+    color: wheat;
+}
+#jumbotron-hello button{
+    background-color: wheat;
+    color: black;
+    border-color: wheat;
+    font-size: 20px;
+    font-weight: bold;
+}
