@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/my.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" defer></script>
+    <script src="../controllers/index.js" defer></script>
+<body>
+<div class="conteiner-fluid">
+
+
+    <div class="conteiner-fluid col-sm-4 col-sm-offset-2">
+        <form>
+            <fieldset>
+                <legend>Редактирование</legend>
+                <div class="form-group">
+                    <label for="editBrend">Выберите марку машины:</label>
+                    <select id="editBrend" class="form-control">
+                        <option selected></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editModel">Выберите модель машины:</label>
+                    <select id="editModel" class="form-control">
+                        <option selected></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editDate">Введите год выпуска</label>
+                    <input id="editDate" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="editCost">Введите цену, BYN</label>
+                    <input id="editCost" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="editBtnFocus1">Выберите вид топлива</label>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button class="form-control btn btn-success" id="editBtnFocus1">Автомат</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="form-control btn btn-success">Механика</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="editVolume">Введите объем двигателя</label>
+                    <input id="editVolume" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="editBtnFocus2">Выберите вид топлива</label>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <button class="form-control btn btn-success" id="editBtnFocus2">Бензин</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button class="form-control btn btn-success">Дизель</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button class="form-control btn btn-success">Электро</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-3 col-sm-offset-6">
+                            <button class="form-control btn btn-primary">Сохранить</button>
+                        </div>
+                        <div class="col-sm-3">
+                            <button class="form-control btn btn-primary">Отменить</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="conteiner-fluid col-sm-4 col-sm-offset-1">
+        <img src="resource/hello-page.jpg" class="img img-bordered" width="400px"><br/><br/>
+        <button class="btn btn-lg btn-success col-sm-offset-7">Загрузить</button>
+    </div>
+
+
+
+</div>
+</body>
+</html>
