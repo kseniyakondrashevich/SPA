@@ -1,8 +1,13 @@
+#main-container{
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+}
 #selector{
     border: solid;
     border-width: 1px;
     border-color: #bdbdbd;
-    width: 17%;
+    /*width: 20%;*/
 }
 
 .modal-dialog{
@@ -19,7 +24,7 @@
     opacity: 0.5;*/
 }
 body{
-    background-image: url('../resource/hello-page.jpg');
+    /*background-image: url('../resource/hello-page.jpg');*/
     background-attachment: fixed;
     background-size: cover;
     height: 100%;
@@ -42,3 +47,50 @@ body{
     font-size: 20px;
     font-weight: bold;
 }
+
+
+/*for profile*/
+
+
+/* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+/*.row.content {height: 1500px}*/
+
+/* Set gray background color and 100% height */
+.sidenav {
+    background-color: #f1f1f1;
+    height: 100%;
+}
+
+/* Set black background color, white text and some padding */
+
+
+/*table*/
+#table{
+    width: 64%;
+}
+
+
+h6{
+    margin: 0;
+}
+
+#more {
+    background-color: wheat;
+
+    font-size: 25px;
+    width: 400px;
+    height: 300px;
+    top: 100px;
+    position: absolute;
+    display: none;
+}
+
+#table2 > tr{
+    border: none;
+}
+
+#search-conteiner{
+
+}
+
+
