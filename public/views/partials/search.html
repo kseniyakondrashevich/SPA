@@ -1,6 +1,7 @@
- <%for(let i=0; i< mas.length; i++){%>
+<div class="conteiner" id="search-results">
+<%for(let i=0; i< mas.length; i++){%>
             <div class="conteiner-fluid">
-        <div class="col-sm-7 col-sm-offset-1">
+        <div class="col-sm-7">
             <div class="media">
                 <div class="media-left">
                     <img src=<%= mas[i]['photo'] %> class="media-object img-rounded" style="width:260px">
@@ -11,7 +12,7 @@
                             <h3 class="media-heading"><%= mas[i]["brand"] %> <%= mas[i]["model"] %>, <%= mas[i]["year"] %> г</h3>
                             <h4><%= mas[i]["cost"] %> BYN</h4>
                             <h4><small><%= mas[i]["cost"]*0.53 %>$</small></h4>
-                            <h4><small><%= mas[i]["brand"] %>*0.49 euro</small></h4>
+                            <h4><small><%= mas[i]["cost"]*0.49 %>e</small></h4>
                         </div>
                         <div class="col-sm-6">
                             <table class="table" id="table2">
@@ -39,5 +40,4 @@
         </div>
         </div>
      <%}%>
- <div class="col-sm-3 col-sm-offset-1" id="selector">
- </div>
+</div>
