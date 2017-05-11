@@ -1,21 +1,25 @@
- <form>
+<script src="/views/js/search.js"></script>
+<script src="/views/js/filtr.js"></script>
+
+<div id="selector">
+    <form>
         <fieldset>
             <legend>Параметры авто</legend>
             <div class="form-group">
-                <label for="selectBrend">Марка</label>
-                <select id="selectBrend" class="form-control">
-                    <option selected>Не выбрано</option>
+                <label for="selectBrand">Марка</label>
+                <select id="selectBrand" class="form-control">
+                    <option>Не выбрано</option>
                     <%for(let i=0; i< mas["brand"].length; i++){%>
-                    <option> <%= mas["brand"][i] %> </option>
+                    <option><%= mas["brand"][i] %></option>
                     <%}%>
                 </select>
             </div>
             <div class="form-group">
                 <label for="selectModel">Модель</label>
                 <select id="selectModel" class="form-control">
-                    <option selected>Не выбрано</option>
+                    <option>Не выбрано</option>
                     <%for(let i=0; i< mas["model"].length; i++){%>
-                    <option> <%= mas["model"][i] %> </option>
+                    <option><%= mas["model"][i] %></option>
                     <%}%>
                 </select>
             </div>
@@ -23,20 +27,10 @@
                 <label for="selectDateFrom">Год выпуска</label>
                 <div class="row">
                     <div class="col-sm-6">
-                        <select id="selectDateFrom" class="form-control">
-                            <option selected>С</option>
-                            <%for(let i=0; i< mas.length; i++){%>
-                            <option > <%= mas[i]['year'] %> </option>
-                            <%}%>
-                        </select>
+                        <input id="selectDateFrom" type="text" placeholder="С" class="form-control">
                     </div>
                     <div class="col-sm-6">
-                        <select id="selectDateTo" class="form-control">
-                            <option selected>По</option>
-                            <%for(let i=0; i< mas["year"].length; i++){%>
-                            <option> <%= mas["year"][i] %> </option>
-                            <%}%>
-                        </select>
+                        <input id="selectDateTo" type="text" placeholder="По" class="form-control">
                     </div>
                 </div>
             </div>
@@ -55,30 +49,20 @@
 
                 <div class="row">
                     <div class="col-sm-6">
-                        <select id="selectCostFrom" class="form-control">
-                            <option selected>От</option>
-                            <%for(let i=0; i< mas["model"].length; i++){%>
-                            <option> <%= mas["cost"][i] %> </option>
-                            <%}%>
-                        </select>
+                        <input id="selectCostFrom" type="text" placeholder="От" class="form-control">
                     </div>
                     <div class="col-sm-6">
-                        <select id="selectCostTo" class="form-control">
-                            <option selected>До</option>
-                            <%for(let i=0; i< mas["cost"].length; i++){%>
-                            <option> <%= mas["cost"][i] %> </option>
-                            <%}%>
-                        </select>
+                        <input id="selectCostTo" type="text" placeholder="До" class="form-control">
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-sm-6">
-                        <button class="form-control btn btn-success">Автомат</button>
+                        <input type="radio" name="transmission" value="Автомат">Автомат</input>
                     </div>
                     <div class="col-sm-6">
-                        <button class="form-control btn btn-success">Механика</button>
+                        <input type="radio" name="transmission" value="Механика">Механика</button>
                     </div>
                 </div>
             </div>
@@ -86,38 +70,26 @@
                 <label for="selectVolumeFrom">Объем двигателя</label>
                 <div class="row">
                     <div class="col-sm-6">
-                        <select id="selectVolumeFrom" class="form-control">
-                            <option selected>От</option>
-                            <%for(let i=0; i< mas["volume"].length; i++){%>
-                            <option> <%= mas["volume"][i] %> </option>
-                            <%}%>
-                        </select>
+                        <input id="selectVolumeFrom" type="text" placeholder="От" class="form-control">
                     </div>
                     <div class="col-sm-6">
-                        <select id="selectVolumeTo" class="form-control">
-                            <option selected>До</option>
-                            <%for(let i=0; i< mas["volume"].length; i++){%>
-                            <option> <%= mas["volume"][i] %> </option>
-                            <%}%>
-                        </select>
+                        <input id="selectVolumeTo" type="text" placeholder="До" class="form-control">
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-sm-4">
-                        <button class="form-control btn btn-success">Бензин</button>
+                        <input type="radio" name="typeOfFuel" value="Бензин">Бензин</button>
                     </div>
                     <div class="col-sm-4">
-                        <button class="form-control btn btn-success">Дизель</button>
-                    </div>
-                    <div class="col-sm-4">
-                        <button class="form-control btn btn-success">Электро</button>
+                        <input type="radio" name="typeOfFuel" value="Дизель">Дизель</button>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <button class="form-control btn btn-primary">Применить фильтр</button>
+                <button id="apply-filter" type="button" class="form-control btn btn-primary">Применить фильтр</button>
             </div>
         </fieldset>
     </form>
+</div>

@@ -10,6 +10,9 @@ require.config({
     }
 });
 
+//page('/', homePage);
+//page('/#car')
+
 require(["router", "just"], function (router, just) {
 
     /*$(window).on('customhashchange', function (event, newUrl, params) {
@@ -35,6 +38,9 @@ require(["router", "just"], function (router, just) {
         else if(/^\/#admin.*$/.test(url)){
             alert(hash);
             getAdminPage();
+        }
+        else if(/^\/#filter\/\?.*/.test(url)){
+            getFilterPage(hash.substr(9, hash.length));
         }
 
     });
@@ -68,13 +74,13 @@ require(["router", "just"], function (router, just) {
             url: "/car/?id="+param,
             success: function (ans) {
                 if(JSON.parse(ans).length ==0){
-                    err('Машина с данным номером не найдена :(');
+                    err('Машина с данным номером не найдена :(', insertInDOM, $('#main-container'));
                 }
                 else
                     renderFile('car', {obj: JSON.parse(ans)}, insertInDOM, $('#main-container'));
             },
             error: function(){
-                err('Что-то пошло не так...');
+                err('Что-то пошло не так...', insertInDOM, $('#main-container'));
             }
         })
     }
@@ -85,30 +91,30 @@ require(["router", "just"], function (router, just) {
             url: "/search/?id="+param,
             success: function (ans) {
                 if(JSON.parse(ans).length ==0){
-                    err('Поиск по заданным параметрам ничего не дал :(');
+                    err('Поиск по заданным параметрам ничего не дал :(', insertInDOM, $('#main-container'));
                 }
                 else{
                     renderFile('search', {mas: JSON.parse(ans)}, insertInDOM, $('#main-container'));
                     $.ajax({
                         type: "GET",
-                        url: "/filtr",
+                        url: "/filterData",
                         success: function (ans) {
                             if(JSON.parse(ans).length ==0){
-                                err('Недостаточно данных для фильтрации :(');
+                                err('Недостаточно данных для фильтрации :(', appendToDOM, $('#main-container'));
                             }
                             else{
                                 alert(JSON.parse(ans)["brand"][0]);
-                                renderFile('filtr', {mas: JSON.parse(ans)}, insertInDOM, $('#selector'));
+                                renderFile('filtr', {mas: JSON.parse(ans)}, appendToDOM, $('#main-container'));
                             }
                         },
                         error: function(){
-                            err('Что-то пошло не так...');
+                            err('Что-то пошло не так...', appendToDOM, $('#main-container'));
                         }
                     })
                 }
             },
             error: function(){
-                err('Что-то пошло не так...');
+                err('Что-то пошло не так...', insertInDOM, $('#main-container'));
             }
         })
     }
@@ -119,13 +125,27 @@ require(["router", "just"], function (router, just) {
             url: "/admin",
             success: function (ans) {
                 if(JSON.parse(ans).length ==0){
-                    err('Страница не найдена :(');
+                    err('Страница не найдена :(', insertInDOM, $('#main-container'));
                 }
                 else
                     renderFile('admin', {obj: JSON.parse(ans)}, insertInDOM, $('#main-container'));
             },
             error: function(){
-                err('Что-то пошло не так...');
+                err('Что-то пошло не так...', insertInDOM, $('#main-container'));
+            }
+        })
+    }
+
+    function getFilterPage(params) {
+        $.ajax({
+            type: "GET",
+            url: "/filter/?"+params,
+            success: function (ans) {
+                $('#search-results').empty();
+                if(JSON.parse(ans).length ==0)
+                    err('По вашему запросу ничего не найдено', prependToDOM, $('#main-container'));
+                else
+                    renderFile('search', {mas: JSON.parse(ans)}, prependToDOM, $('#main-container'));
             }
         })
     }
@@ -148,6 +168,10 @@ require(["router", "just"], function (router, just) {
 
     function appendToDOM($container, html) {
         $container.append(html);
+    }
+
+    function prependToDOM($container, html) {
+        $container.prepend(html);
     }
 
     function err(title, callback, $container) {

@@ -15,12 +15,13 @@ router.use(function (req, res, next) {
 
 router.get('/tableData', home(db).getMainTable);
 
-
 router.get('/car', home(db).getCar);
 
 router.get('/search', home(db).getSearch);
 
-router.get('/filtr', home(db).getFiltr);
+router.get('/filterData', home(db).getFilterData);
+
+router.get('/filter', home(db).getFilter);
 
 router.get('/admin', home(db).getAdminPage);
 
