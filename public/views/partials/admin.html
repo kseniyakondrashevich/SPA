@@ -1,18 +1,3 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/my.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" defer></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" defer></script>
-    <script src="../controllers/index.js" defer></script>
-</head>
-<body>
-
-
 <div class="container-fluid" id="main-container">
     <div class="container-fluid">
         <form class="form-inline">
@@ -51,15 +36,15 @@
     </thead>
     <tbody>
     <tr>
-        <td width="180px"><img src="resource/hello-page.jpg" class="img-responsive" alt="car" width="150px"></td>
-        <td>Folksvagen</td>
-        <td>Golf</td>
-        <td>2000</td>
-        <td>30000</td>
-        <td>120000</td>
-        <td>400</td>
-        <td>Бензин</td>
-        <td>Механика</td>
+        <td width="180px"><img src=<%= mas[i]['photo'] %> class="img-responsive" alt="car" width="150px"></td>
+        <td><%= mas[i]['brand']</td>
+        <td><%= mas[i]['model']</td>
+        <td><%= mas[i]['year']</td>
+        <td><%= mas[i]['mileage']</td>
+        <td><%= mas[i]['cost']</td>
+        <td><%= mas[i]['volume']</td>
+        <td><%= mas[i]['typeOfFuel']</td>
+        <td><%= mas[i]['transmission']</td>
         <td></td>
     </tr>
     </tbody>
@@ -70,8 +55,3 @@
         <button class="btn btn-primary">Изменить</button><br/><br/>
         <button class="btn btn-primary">Удалить</button>
     </div>
-
-
-</div>
-</body>
-</html>
