@@ -13,8 +13,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.4.0",
+    "body-parser": "^1.16.0",
     "express": "^4.15.2",
-    "ejs": "^1.0.0",
-    "requirejs" : "2.3.3"
+    "jquery": "^3.2.1",
+    "just": "^0.1.8",
+    "mysql": "^2.13.0",
+    "requirejs": "2.3.3"
   }
 }
