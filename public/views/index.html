@@ -2,51 +2,16 @@
 <html lang="ru">
 <head>
     <title>infocar</title>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/my.css">
+    <link rel="stylesheet" href="/views/css/my.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" defer></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" defer></script>
-    <script src="../controllers/index.js" defer></script>
-
-</head>
+    <script data-main="/controllers/app" src="/controllers/require.js" defer></script>
+    </head>
 <body>
-<div class="container-fluid" id="main-container">
-
-<div class="container-fluid" id="jumbotron-hello">
-    <div class="jumbotron">
-        <div class="container text-center">
-            <h1>Infocar</h1>
-            <p>Сообщество автолюбителей</p><br/><br/><br/><br/>
-            <div class="container-fluid">
-                <form id="auth-form">
-                    <div class="row">
-                        <div class="col-sm-3"></div>
-                        <div class="col-sm-4">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input id="email" type="text" class="form-control" name="email" placeholder="Email">
-                            </div><br/>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <input id="password" type="password" class="form-control" name="password" placeholder="Password">
-                            </div><br/>
-                        </div>
-                        <div class="col-sm-5">
-                            <div class="input-group">
-                                <button id="auth-button" type="submit" class="btn btn-primary">Войти</button><br/><br/>
-                                <a class="lead" href="#">Зарегистрироваться</a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
+<div class="container" id="main-container">
 
 </div>
 </body>
