@@ -92,37 +92,6 @@ let db = function () {
             res["model"]=getUniqueArray(result);
             callback(res);
         });
-        /*sql = "SELECT DISTINCT year from coursesdb.car";
-        database.get().query(sql, function (err, result) {
-            if(err) throw err;
-            res["year"]=getUniqueArray(result);
-        });*/
-        /*sql = "SELECT DISTINCT mileage from coursesdb.car";
-        database.get().query(sql, function (err, result) {
-            if(err) throw err;
-            res["mileage"]=getUniqueArray(result);
-        });*/
-        /*sql = "SELECT DISTINCT cost from coursesdb.car";
-        database.get().query(sql, function (err, result) {
-            if(err) throw err;
-            res["cost"]=getUniqueArray(result);
-        });*/
-        /*sql = "SELECT DISTINCT typeOfFuel from coursesdb.car";
-        database.get().query(sql, function (err, result) {
-            if(err) throw err;
-            res["typeOfFuel"]=getUniqueArray(result);
-        });*/
-        /*sql = "SELECT DISTINCT volume from coursesdb.car";
-        database.get().query(sql, function (err, result) {
-            if(err) throw err;
-            res["volume"]=getUniqueArray(result);
-        });*/
-        /*sql = "SELECT DISTINCT transmission from coursesdb.car";
-        database.get().query(sql, function (err, result) {
-            if(err) throw err;
-            res["transmission"]=getUniqueArray(result);
-            callback(res);
-        })*/
     }
 
     function admin(callback) {
@@ -138,7 +107,6 @@ let db = function () {
     }
 
     function filter(params, callback) {
-        console.log(params);
         sql = "SELECT " +
             carColumns.join(', ') + ", transmission, " +allImageColumns[1] +" "+
             "FROM car INNER JOIN image " +
@@ -170,7 +138,6 @@ let db = function () {
             sql=sql.substr(0, sql.length-4);
         }
 
-        console.log(sql);
         database.get().query(sql, function (err, result) {
             if(err)
                 throw err;
@@ -178,13 +145,32 @@ let db = function () {
         });
     }
 
+    function getEditCar(id, callback) {
+        sql = "SELECT " +
+            carColumns.join(', ') + ",transmission, " + allImageColumns[1] + " "+
+            "FROM car INNER JOIN image " +
+            "ON car.id_car=image.id_car " +
+            "WHERE car.id_car= "+ id["id"] +";";
+
+        database.get().query(sql, function (err, result) {
+            if(err)
+                throw err;
+            callback (result);
+        });
+    }
+
+    /*function executeDelete(id, callback) {
+        sql= "DELETE FROM"
+    }*/
+
     return{
         select25 : select25,
         selectCar : selectCar,
         search : search,
         filterData : filterData,
         admin: admin,
-        filter : filter
+        filter : filter,
+        getEditCar : getEditCar
     }
 }();
 

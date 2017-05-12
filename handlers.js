@@ -21,7 +21,6 @@ function home(db) {
     }
 
     function getSearch(req, res) {
-        console.log(req.query);
         const searchEl = req.query["id"].split('+').join(' ');
         db.search(searchEl, function (result) {
 
@@ -30,6 +29,7 @@ function home(db) {
     }
 
     function getFilterData(req, res) {
+        console.log(2);
         db.filterData(function (result) {
             res.send(JSON.stringify(result));
         })
@@ -48,6 +48,20 @@ function home(db) {
         })
     }
 
+    function getEditPage(req, res) {
+        console.log(1);
+        db.getEditCar(req.query, function (result) {
+            res.send(JSON.stringify(result));
+        })
+    }
+
+    function deleteRecord(req, res) {
+        console.log(2);
+        db.executeDelete(req.query, function (result) {
+            res.send(JSON.stringify(result));
+        })
+    }
+
     return{
         getHomePage : getHomePage,
         getMainTable : getMainTable,
@@ -55,7 +69,9 @@ function home(db) {
         getSearch : getSearch,
         getFilterData : getFilterData,
         getAdminPage : getAdminPage,
-        getFilter : getFilter
+        getFilter : getFilter,
+        getEditPage : getEditPage,
+        deleteRecord : deleteRecord
     }
 }
 

@@ -21,10 +21,9 @@ let eventsHandlers = function () {
 
     function btnClick(event) {
         event.preventDefault();
-        let str = $('#search').val();
+        let str = $('#search-input').val();
         let searchStr = str.split(' ').join('+');
-        alert(searchStr);
-        history.pushState(null, null, '#search/?id='+searchStr);
+        history.pushState(null, null, location.href+'#search/?id='+searchStr);
         $(window).trigger('hashchange');
     }
 

@@ -15,6 +15,41 @@
     }
 });*/
 
+/*require(['ejs'], function (ejs) {
+    alert(1);
+    let people = ['geddy', 'neil', 'alex'];
+    let html = ejs.render('<%= people.join(", "); %>', {'people': people});
+});*/
+
+
+
+
+/*define(['ejs'], function () {
+    ejs = require('ejs');
+    ejs.renderFile('../views/mainTable.html');
+    /!*$.ajax({
+        type: "GET",
+        url: "/table",
+        data: data,
+        success: function (ans) {
+            let html = ejs.
+        }
+    })*!/
+});*/
+
+
+/*$('body').load('../views/search.html');
+$.ajax({
+    type: "POST",
+    url: "/data/question.php",
+    dataType: "json",
+    data: data,
+    success: function(ans){
+        let html = new EJS({url: ' /templates/question.ejs'}).render(ans);
+    }
+});*/
+
+
 $('#table-ins').on({
     mouseenter: showBlock,
     mousemove : moveBlock,
@@ -40,18 +75,5 @@ function hideBlock() {
 
 
 
-$('#admin-table').on({
-    mouseenter: showCell,
-    mouseleave: hideCell
-},
-'tr');
 
-function showCell() {
-    let content = $('#control-buttons').clone().show();
-    $(this).find('td:last').html(content);
-}
-
-function hideCell() {
-    $(this).find('td:last').empty();
-}
 

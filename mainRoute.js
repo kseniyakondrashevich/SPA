@@ -25,6 +25,10 @@ router.get('/filter', home(db).getFilter);
 
 router.get('/admin', home(db).getAdminPage);
 
+router.get('/admin/edit', home(db).getEditPage);
+
+router.get('/admin/delete', home(db).deleteRecord);
+
 router.get('*', home(db).getHomePage);
 
 

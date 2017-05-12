@@ -4,10 +4,7 @@
     overflow-y: auto;
 }
 #selector{
-    border: solid;
-    border-width: 1px;
-    border-color: #bdbdbd;
-    /*width: 20%;*/
+    margin-left: 20%;
 }
 
 .modal-dialog{
