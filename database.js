@@ -159,9 +159,18 @@ let db = function () {
         });
     }
 
-    /*function executeDelete(id, callback) {
-        sql= "DELETE FROM"
-    }*/
+    function executeDelete(id, callback) {
+        sql= "DELETE FROM car " +
+            "WHERE " +
+            "id_car="+id["id"];
+
+        database.get().query(sql, function (err, result) {
+            if(err)
+                throw err;
+            console.log(result);
+            callback (result);
+        });
+    }
 
     return{
         select25 : select25,
@@ -170,7 +179,8 @@ let db = function () {
         filterData : filterData,
         admin: admin,
         filter : filter,
-        getEditCar : getEditCar
+        getEditCar : getEditCar,
+        executeDelete : executeDelete
     }
 }();
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$/db-init.js" libraries="{jquery}" />
+    <file url="file://$PROJECT_DIR$/public/app.js" libraries="{jquery}" />
+    <includedPredefinedLibrary name="ECMAScript 6" />
+    <includedPredefinedLibrary name="Node.js Core" />
+  </component>
+</project>

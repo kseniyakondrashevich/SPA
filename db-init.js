@@ -16,7 +16,7 @@ let db = function() {
                 host : 'localhost',
                 user: 'root',
                 password: 'root',
-                database: 'coursesdb'
+                database: 'coursesdb',
             });
             done();
         }

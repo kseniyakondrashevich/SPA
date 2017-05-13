@@ -5,7 +5,7 @@
 function home(db) {
 
     function getHomePage(req, res) {
-        res.sendFile(__dirname + '/public/views/index.html');
+        res.sendFile(__dirname + '/public/index.html');
     }
     
     function getMainTable(req, res) {
