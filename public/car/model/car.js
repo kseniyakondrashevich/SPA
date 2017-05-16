@@ -20,7 +20,6 @@ define(['carProfile', 'editCar'], function (carProfile, editCar) {
         },
 
         getEditPage : function (param) {
-            alert(2);
             $.get("/admin/edit/?id="+param)
                 .done(function (ans) {
                     if(JSON.parse(ans).length ==0){
@@ -48,8 +47,33 @@ define(['carProfile', 'editCar'], function (carProfile, editCar) {
                     editCar.setDeletePage();
                 })
                 .fail(function () {
-                    editCar.setDeleteError();
+                    editCar.setError();
                 })
+        },
+
+        getNewPage : function () {
+            editCar.setNewPage();
+            $.get("/filterData")
+                .done(function (ans) {
+                    editCar.setEditData(JSON.parse(ans));
+                })
+                .fail(function () {
+                    editCar.setError();
+                })
+        },
+        
+        getSavePage : function () {
+            let data = editCar.pickUp();
+            $.post('/admin/save', data, function () {
+                editCar.setSavePage();
+            });
+        },
+
+        getUpdatePage : function () {
+            let data = editCar.pickUp();
+            $.post('/admin/update', data, function () {
+                alert('Запись успешно обновлена');
+            });
         }
     }
 });

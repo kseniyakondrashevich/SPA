@@ -12,6 +12,13 @@ router.use(function (req, res, next) {
     next();
 });
 
+router.use('/signIn/save', home(db).signProfile);
+
+router.use('/signUp/save', home(db).signProfile);
+
+router.use('/signUp', home(db).signUp);
+
+router.use('/signIn', home(db).signIn);
 
 router.get('/tableData', home(db).getMainTable);
 
@@ -28,6 +35,10 @@ router.get('/admin', home(db).getAdminPage);
 router.get('/admin/edit', home(db).getEditPage);
 
 router.get('/admin/delete', home(db).deleteRecord);
+
+router.post('/admin/save', home(db).saveRecord);
+
+router.post('/admin/update', home(db).updateRecord);
 
 router.get('*', home(db).getHomePage);
 

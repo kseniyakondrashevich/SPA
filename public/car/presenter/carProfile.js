@@ -9,7 +9,7 @@ define(['render'], function (render) {
         },
 
         setError : function () {
-            render.renderFile('./partials/info', {title: 'Произошла ошибка', text: 'Невозможно загрузить файл'}, 'insert', $('#main-container'));
+            render.renderFile('./partials/info', {title: 'status 403 Forbidden', text: 'К сожалению, У Вас нет доступа к этой странице'}, 'insert', $('#main-container'));
         },
 
         setCarProfile : function (ans) {

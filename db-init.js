@@ -16,7 +16,7 @@ let db = function() {
                 host : 'localhost',
                 user: 'root',
                 password: 'root',
-                database: 'coursesdb',
+                database: 'database',
             });
             done();
         }
@@ -42,28 +42,29 @@ let db = function() {
     function initInsert(done) {
         if (!connection) return done(new Error('Missing database connection.'));
 
-        const keys = ['brand', 'model', 'year', 'mileage', 'cost', 'typeOfFuel', 'volume', 'transmission'];
+        const keys = ['brand', 'model', 'year', 'mileage', 'cost', 'type_of_fuel', 'volume', 'transmission'];
 
         let brand = [], img, model=[], data = [];
         let newObj = jsonObj["brand"];
         for (key in newObj)
             brand.push(key);
 
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 30; i++) {
             data[0] = random(brand);
             data[1] = random(newObj[data[0]][0]);
             data[2] = random(jsonObj["year"]);
             data[3] = random(jsonObj["mileage"]);
             data[4] = random(jsonObj["cost"]);
-            data[5] = random(jsonObj["typeOfFuel"]);
+            data[5] = random(jsonObj["type_of_fuel"]);
             data[6] = random(jsonObj["volume"]);
             data[7] = random(jsonObj["transmission"]);
+            data[8] = random([29, 5, 4, 3]);
 
             img = random(newObj[data[0]][1]);
 
-            connection.query("INSERT INTO coursesdb.car " +
+            connection.query("INSERT INTO post " +
                 "("
-                + keys.join(',') +
+                + keys.join(',') + ", popularity, id_user" +
                 ")" +
                 " VALUES " +
                 "(" +
@@ -74,13 +75,15 @@ let db = function() {
                 data[4]+"," +
                 "'"+data[5]+"'," +
                 data[6]+"," +
-                "'"+data[7]+"'" +
+                "'"+data[7]+"', " +
+                "0," +
+                data[8]+
                 ");");
-            connection.query("INSERT INTO coursesdb.image " +
-                "( photo, id_car ) " +
+            connection.query("INSERT INTO image " +
+                "( photo, id_image_post ) " +
                 "VALUES ("
                 +"'"+img+"'" +
-                ", (select last_insert_id() from coursesdb.car limit 1));");
+                ", (select last_insert_id() from post limit 1));");
         }
     }
 

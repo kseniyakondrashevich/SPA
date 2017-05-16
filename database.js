@@ -5,18 +5,111 @@
 const database = require('./db-init');
 
 let db = function () {
-    const allCarColumns = ['id_car', 'brand', 'model', 'year', 'mileage', 'cost', 'typeOfFuel', 'volume', 'popularity'];
-    const carColumns = ['brand', 'model', 'year', 'mileage', 'cost', 'typeOfFuel', 'volume'];
-    const allImageColumns = ['id_image', 'photo', 'id_car'];
+    const post = ['brand', 'model', 'year', 'mileage', 'cost', 'type_of_fuel', 'volume', 'transmission', 'content'];
+    const allCarColumns = ['brand', 'model', 'year', 'mileage', 'cost', 'type_of_fuel', 'volume', 'transmission'];
+    const user = ['age' , 'country', 'city', 'contacts', 'nickname', 'avatar'];
+    const carColumns = ['brand', 'model', 'year', 'mileage', 'cost', 'type_of_fuel', 'volume'];
+    const allImageColumns = ['id_image_post', 'photo', 'id_car'];
     let sql;
+
+    function registr(data, callback) {
+        if(!data.login || !data.password)
+            callback({success: '', error: 'Ошибка. Пустой логин или пароль'});
+        else{
+            checkUniqueness(data.login, function (result) {
+                if(result.length == 0){
+                    sql="INSERT INTO user " +
+                        "(" +
+                        "login, password" +
+                        ")" +
+                        " VALUES " +
+                        "(" +
+                        "'"+data.login+"'," +
+                        "'"+data.password+"'" +
+                        ");";
+
+                    database.get().query(sql, function (err, result) {
+                        if(err)
+                            throw err;
+                        callback ({success : 'Вы успешно зарегистрированы', error: ''});
+                    });
+                }
+                else{
+                    callback({success: '', error: 'Пользователь под таким именем уже зарегистрирован'});
+                }
+            });
+        }
+    }
+
+    function authoriz(data, callback) {
+        if(!data.login || !data.password)
+            callback({success: '', error: 'Ошибка. Пустой логин или пароль'});
+        else{
+            checkUniquenessAdmin(data.login, data.password, function (result) {
+                if(result!=0){
+                    callback({success: 'admin', error: '', login: data.login});
+                }
+                else {
+                    checkUniqueness(data.login, function (result) {
+                        if (result.length == 0) {
+                            callback({success: 'guest', error: 'Неверный логин или пароль'});
+                        }
+                        else if (result.length != 0) {
+                            callback({success: 'user', error: '', data: result});
+                        }
+                    })
+                }
+            })
+        }
+    }
+
+    function checkUniquenessAdmin(login, password, callback) {
+        sql = "SELECT * FROM admin WHERE " +
+            "admin_login = '"+ login + "' " +
+            "AND access_code = '" + password + "';";
+
+        database.get().query(sql, function (err, result) {
+            if(err)
+                throw err;
+            callback(result);
+        });
+    }
+
+    function checkUniqueness(login, callback) {
+        sql = "SELECT * FROM user WHERE login = '"+ login + "';";
+
+        database.get().query(sql, function (err, result) {
+            if(err)
+                throw err;
+            callback(result);
+        });
+    }
+
+    function insertProfile(data, callback) {
+        console.log('here');
+
+        sql = "UPDATE user SET " +
+            "age =" + data.age +", " +
+            "country ='" + data.country +"', " +
+            "city ='" + data.city +"', " +
+            "contacts ='" + data.contacts +"', " +
+            "nickname ='" + data.nickname +"', " +
+            "avatar ='" + data.avatar +"' " +
+            "WHERE login='" + data.login + "'; ";
+
+        database.get().query(sql, function (err, result) {
+            if(err)
+                throw err;
+            callback({success: 'Ваш профиль успешно сохранен', error: ''});
+        });
+    }
 
     function select25(callback) {
         sql = "SELECT " +
-            "car.id_car, " +
-            carColumns.join(', ') + ", " +
-            allImageColumns[1] +" " +
-            "FROM car INNER JOIN image " +
-            "ON car.id_car=image.id_car " +
+            "post.id_post, " +
+            carColumns.join(', ') + ", photo " +
+            "FROM post INNER JOIN image " +
+            "ON post.id_post=image.id_image_post " +
             "ORDER BY popularity DESC " +
             "limit 25;";
 
@@ -27,9 +120,14 @@ let db = function () {
         });
     }
 
-    function selectCar(id, callback) {
-        sql = "UPDATE car SET popularity = popularity+1 WHERE id_car=" + id["id"] + ";";
+    function updatePopularity(id) {
+        sql = "UPDATE post SET popularity = popularity+1 WHERE id_post=" + id["id"] + ";";
         database.get().query(sql);
+    }
+
+    function selectCar(id, callback) {
+
+        updatePopularity();
 
         sql = "SELECT " +
             carColumns.join(', ') + ",transmission, " + allImageColumns[1] + " "+
@@ -167,6 +265,64 @@ let db = function () {
         database.get().query(sql, function (err, result) {
             if(err)
                 throw err;
+            callback (result);
+        });
+    }
+
+    function executeInsert(data, callback) {
+        sql="INSERT INTO .car " +
+            "("
+            + allCarColumns.join(',') +
+            ")" +
+            " VALUES " +
+            "(" +
+            "'"+data.brand+"'," +
+            "'"+data.model+"'," +
+            data.date+"," +
+            data.mileage+"," +
+            data.cost+"," +
+            "'"+data.typeOfFuel+"'," +
+            data.volume+"," +
+            "'"+data.transmission+"'" +
+            ");";
+
+        database.get().query(sql, function (err, result) {
+            if(err)
+                throw err;
+            sql="INSERT INTO .image " +
+                "( photo, id_car ) " +
+                "VALUES ("
+                +"'"+data.image+"'" +
+                ", (select last_insert_id() from coursesdb.car limit 1));";
+
+                database.get().query(sql, function (err, result) {
+                    if(err)
+                        throw err;
+                    console.log(result);
+                    callback (result);
+                });
+        });
+    }
+
+    function executeUpdate(id, data, callback) {
+        sql = "UPDATE car SET " +
+            "brand ='" + data.brand +"', " +
+            "model ='" + data.model +"', " +
+            "year =" + data.date +", " +
+            "mileage =" + data.mileage +", " +
+            "cost =" + data.cost +", " +
+            "typeOfFuel ='" + data.typeOfFuel +"', " +
+            "volume =" + data.volume +", " +
+            "transmission ='" + data.transmission +"', " +
+            "WHERE id_car=" + id["id"] + "; ";
+
+        sql+= "UPDATE image SET " +
+            "photo ='" + data.image + "' " +
+            "WHERE id_car=" + id["id"] + "; ";
+
+        database.get().query(sql, function (err, result) {
+            if(err)
+                throw err;
             console.log(result);
             callback (result);
         });
@@ -180,7 +336,12 @@ let db = function () {
         admin: admin,
         filter : filter,
         getEditCar : getEditCar,
-        executeDelete : executeDelete
+        executeDelete : executeDelete,
+        executeInsert : executeInsert,
+        executeUpdate : executeUpdate,
+        registr : registr,
+        insertProfile : insertProfile,
+        authoriz : authoriz
     }
 }();
 

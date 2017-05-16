@@ -42,7 +42,7 @@ $(document).ready(function () {
 
     $('#continue').on('click', function (event) {
         event.preventDefault();
-        let url= '/#main';
+        let url= '#main';
         eventsHandlers.trigger(location.pathname+url);
     });
 });
