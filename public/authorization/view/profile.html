@@ -1,0 +1,41 @@
+<script src="/authorization/presenter/authHandlers.js"></script>
+
+
+<div class="container col-sm-8 col-sm-offset-2">
+    <div class="container col-sm-6 col-sm-offset-3">
+        <form>
+            <fieldset>
+                <legend>Ваш профиль</legend>
+                <div class="form-group">
+                    <img id="avatar" src="#" alt="" class="img img-responsive">
+                    <input type="text" id="avatarInput" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="nickname">Nickname</label>
+                    <input class="form-control" type="text" id="nickname">
+                </div>
+                <div class="form-group">
+                    <label for="age">Возраст</label>
+                    <input class="form-control" type="number" id="age">
+                </div>
+                <div class="form-group">
+                    <label for="country">Страна</label>
+                    <input class="form-control" type="text" id="country">
+                </div>
+                <div class="form-group">
+                    <label for="city">Город</label>
+                    <input class="form-control" type="text" id="city">
+                </div>
+                <div class="form-group">
+                    <label for="contacts">Контактные данные</label>
+                    <input class="form-control" type="text" id="contacts">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-success" id="saveProfile">Сохранить</button>
+                    <button class="btn btn-lg btn-info" id="continue">Продолжить</button>
+                    <div class="hidden" id="login"><%= login %></div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
